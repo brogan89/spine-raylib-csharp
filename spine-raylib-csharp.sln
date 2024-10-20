@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spine-raylib-csharp", "spine-raylib-csharp\spine-raylib-csharp.csproj", "{18E1F006-EF98-4098-AB34-44EB263A40AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spine-csharp", "spine-csharp\spine-csharp\spine-csharp.csproj", "{252F0E46-77CC-4F34-A27E-7799062D8F88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{18E1F006-EF98-4098-AB34-44EB263A40AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18E1F006-EF98-4098-AB34-44EB263A40AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18E1F006-EF98-4098-AB34-44EB263A40AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252F0E46-77CC-4F34-A27E-7799062D8F88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252F0E46-77CC-4F34-A27E-7799062D8F88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252F0E46-77CC-4F34-A27E-7799062D8F88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252F0E46-77CC-4F34-A27E-7799062D8F88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
