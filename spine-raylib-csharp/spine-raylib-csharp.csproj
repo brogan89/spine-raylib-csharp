@@ -8,4 +8,28 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Raylib-CSharp" Version="4.1.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Content\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\spine-csharp\spine-csharp\spine-csharp.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Content\SpineBoy\spineboy-pro.atlas">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Content\SpineBoy\spineboy-pro.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Content\SpineBoy\spineboy-pro.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
