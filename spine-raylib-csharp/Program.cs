@@ -70,7 +70,10 @@ while (!Window.ShouldClose())
             animationState.Update(Time.GetFrameTime());
             animationState.Apply(skeleton);
             skeleton.UpdateWorldTransform(Skeleton.Physics.None);
+            
+            RlGl.DisableBackfaceCulling();
             spine.DrawSkeleton(skeleton, Vector3.Zero, atlas.Pages[0].pma);
+            RlGl.EnableBackfaceCulling();
         }
         Graphics.EndMode3D();
 

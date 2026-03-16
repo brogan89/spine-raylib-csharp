@@ -280,9 +280,9 @@ public class SpineRaylib
             BlendMode.Screen => Raylib_CSharp.Rendering.BlendMode.Additive,
             _ => throw new ArgumentOutOfRangeException()
         };
-        RlGl.SetBlendMode(blendMode);
-        Graphics.BeginBlendMode(Raylib_CSharp.Rendering.BlendMode.Custom);
-        // Graphics.BeginBlendMode(blendMode);
+        // RlGl.SetBlendMode(blendMode);
+        Graphics.BeginBlendMode(blendMode);
+        // Graphics.BeginBlendMode(Raylib_CSharp.Rendering.BlendMode.Alpha);
     }
 
     private void Engine_DrawRegion(
@@ -325,7 +325,7 @@ public class SpineRaylib
                         RlGl.Vertex3F(
                             position.X + vertex.x,
                             position.Y + vertex.y,
-                            position.X - _anti_z_fighting_index
+                            position.Z - _anti_z_fighting_index
                         );
                     }
                 }
@@ -344,49 +344,33 @@ public class SpineRaylib
         Vector3 position
     )
     {
-        var vertex = new Vertex();
+        RlGl.EnableTexture(texture.Id);
         RlGl.PushMatrix();
         {
-            for (int vertexIndex = start; vertexIndex < count; vertexIndex += 3)
+            RlGl.Begin(DrawMode.Triangles);
             {
-                RlGl.EnableTexture(texture.Id);
-                RlGl.Begin(DrawMode.Quads);
+                for (int vertexIndex = start; vertexIndex < start + count; vertexIndex++)
                 {
-                    int i;
-                    for (i = 2; i > -1; i--)
-                    {
-                        vertex = vertices[vertexIndex + i];
-                        RlGl.TexCoord2F(vertex.u, vertex.v);
-                        RlGl.Color4F(vertex.r, vertex.g, vertex.b, vertex.a);
-                        RlGl.Vertex3F(
-                            position.X + vertex.x,
-                            position.Y + vertex.y,
-                            position.Z + _anti_z_fighting_index
-                        );
-                    }
+                    var vertex = vertices[vertexIndex];
+                    RlGl.Color4F(vertex.r, vertex.g, vertex.b, vertex.a);
+                    RlGl.TexCoord2F(vertex.u, vertex.v);
                     RlGl.Vertex3F(
                         position.X + vertex.x,
                         position.Y + vertex.y,
                         position.Z + _anti_z_fighting_index
                     );
                 }
-                RlGl.End();
-
-                if (SP_RENDER_WIREFRAME)
+            }
+            RlGl.End();
+    
+            if (SP_RENDER_WIREFRAME)
+            {
+                for (int vertexIndex = start; vertexIndex < start + count; vertexIndex += 3)
                 {
                     Graphics.DrawTriangleLines(
-                        new Vector2(
-                            vertices[vertexIndex].x + position.X,
-                            vertices[vertexIndex].y + position.Y
-                        ),
-                        new Vector2(
-                            vertices[vertexIndex + 1].x + position.X,
-                            vertices[vertexIndex + 1].y + position.Y
-                        ),
-                        new Vector2(
-                            vertices[vertexIndex + 2].x + position.X,
-                            vertices[vertexIndex + 2].y + position.Y
-                        ),
+                        new Vector2(vertices[vertexIndex].x + position.X, vertices[vertexIndex].y + position.Y),
+                        new Vector2(vertices[vertexIndex + 1].x + position.X, vertices[vertexIndex + 1].y + position.Y),
+                        new Vector2(vertices[vertexIndex + 2].x + position.X, vertices[vertexIndex + 2].y + position.Y),
                         vertexIndex == 0 ? Color.Red : Color.Green
                     );
                 }
